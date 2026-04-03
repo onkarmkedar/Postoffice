@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: postoffice-address-finder
+    runtime: node
+    plan: free
+    region: oregon
+    buildCommand: npm install --workspaces --include-workspace-root && npm run build -w client
+    startCommand: npm run start -w server
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: HOST
+        value: 0.0.0.0
+      - key: PORT
+        value: 4000
+      - key: GEOCODING_API_KEY
+        sync: false
